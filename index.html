@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Metin2 - Okey Helper</title>
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+    <script src="../p5.min.js"></script>
+    <script src="helper.js"></script>
+    <style>
+        body { background: #101015; color: white }
+        /*#game>canvas { border: 5px solid white }*/
+        .container { margin: auto; text-align: center }
+        .controls {
+            margin: 15px 0;
+        }
+
+        .controls i {
+            padding: 5px;
+            border: 1px solid white;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="game"></div>
+        <div class="controls">
+            <i onclick="desfazer()" class="fa fa-undo"></i>
+            <i onclick="refazer()" class="fa fa-redo"></i>
+            <i onclick="limpar()" class="fas fa-eraser"></i>
+        </div>
+    </div>
+</body>
+</html>
