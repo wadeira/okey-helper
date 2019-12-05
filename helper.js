@@ -29,7 +29,7 @@ function iniciarJogo() {
 
 function setup() {
     // Criar uma tela para desenhar o jogo
-    let canvas = createCanvas(750, 600)
+    let canvas = createCanvas(750, 430)
     canvas.parent('game')
 
     iniciarJogo()
