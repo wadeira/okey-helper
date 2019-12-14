@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Metin2 - Okey Helper</title>
     <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="p5.min.js"></script>
     <script src="helper.js"></script>
     <style>
@@ -45,10 +46,14 @@
             padding: 2px 15px
         }
 
+        .points table img {
+            width: 12px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <div id="game"></div>
         <div class="controls">
             <i onclick="desfazer()" class="fa fa-undo"></i>
@@ -61,28 +66,28 @@
                     <td>Cartas</td><td>Pontos</td>
                 </tr>
                 <tr>
-                    <td>1-1-1</td><td>20</td>
+                    <td>1-1-1</td><td>20 <img src="circle_all.png" v-if="combinacaoDisponivel(1,1,1)"></td>
                 </tr>
                 <tr>
-                    <td>2-2-2</td><td>30</td>
+                    <td>2-2-2</td><td>30 <img src="circle_all.png" v-if="combinacaoDisponivel(2,2,2)"></td>
                 </tr>
                 <tr>
-                    <td>3-3-3</td><td>40</td>
+                    <td>3-3-3</td><td>40 <img src="circle_all.png" v-if="combinacaoDisponivel(3,3,3)"></td>
                 </tr>
                 <tr>
-                    <td>4-4-4</td><td>50</td>
+                    <td>4-4-4</td><td>50 <img src="circle_all.png" v-if="combinacaoDisponivel(4,4,4)"></td>
                 </tr>
                 <tr>
-                    <td>5-5-5</td><td>60</td>
+                    <td>5-5-5</td><td>60 <img src="circle_all.png" v-if="combinacaoDisponivel(5,5,5)"></td>
                 </tr>
                 <tr>
-                    <td>6-6-6</td><td>70</td>
+                    <td>6-6-6</td><td>70 <img src="circle_all.png" v-if="combinacaoDisponivel(6,6,6)"></td>
                 </tr>
                 <tr>
-                    <td>7-7-7</td><td>80</td>
+                    <td>7-7-7</td><td>80 <img src="circle_all.png" v-if="combinacaoDisponivel(7,7,7)"></td>
                 </tr>
                 <tr>
-                    <td>8-8-8</td><td>90</td>
+                    <td>8-8-8</td><td>90 <img src="circle_all.png" v-if="combinacaoDisponivel(8,8,8)"></td>
                 </tr>
             </table>
             <table>
@@ -90,22 +95,86 @@
                     <td>Cartas</td><td>Cores diferentes</td><td>Mesma cor</td>
                 </tr>
                 <tr>
-                    <td>1-2-3</td><td>10</td><td>50</td>
+                    <td>
+                        1-2-3
+                    </td>
+                    <td>
+                        10
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(1,2,3)">
+                    </td>
+                    <td>
+                        50 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(1,2,3, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(1,2,3, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(1,2,3, 2)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>2-3-4</td><td>20</td><td>60</td>
+                    <td>
+                        2-3-4
+                    </td>
+                    <td>
+                        20
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(2,3,4)">
+                    </td>
+                    <td>
+                        60 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(2,3,4, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(2,3,4, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(2,3,4, 2)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>3-4-5</td><td>30</td><td>70</td>
+                    <td>3-4-5</td>
+                    <td>
+                        30
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(3,4,5)">
+                    </td>
+                    <td>
+                        70 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(3,4,5, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(3,4,5, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(3,4,5, 2)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>4-5-6</td><td>40</td><td>80</td>
+                    <td>4-5-6</td>
+                    <td>
+                        40
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(4,5,6)">
+                    </td>
+                    <td>
+                        80 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(4,5,6, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(4,5,6, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(4,5,6, 2)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>5-6-7</td><td>50</td><td>90</td>
+                    <td>5-6-7</td>
+                    <td>
+                        50
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(5,6,7)">
+                    </td>
+                    <td>
+                        90 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(5,6,7, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(5,6,7, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(5,6,7, 2)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>6-7-8</td><td>60</td><td>100</td>
+                    <td>6-7-8</td>
+                    <td>
+                        60
+                        <img src="circle_all.png" v-if="combinacaoDisponivel(6,7,8)">
+                    </td>
+                    <td>
+                        100 
+                        <img src="circle_blue.png" v-if="combinacaoDisponivel(6,7,8, 0)">
+                        <img src="circle_red.png" v-if="combinacaoDisponivel(6,7,8, 1)">
+                        <img src="circle_yellow.png" v-if="combinacaoDisponivel(6,7,8, 2)">
+                    </td>
                 </tr>
             </table>
         </div>

@@ -28,11 +28,25 @@ function iniciarJogo() {
 }
 
 function setup() {
+
+    iniciarJogo()
+    // Inicializar a framework Vue.js
+    window.app = new Vue({
+        el: '#app',
+        data: {
+            a: 0
+        },
+        methods: {
+            combinacaoDisponivel(a, b, c, d=-1) {
+                this.a
+                return combinacaoDisponivel(a, b, c, d)
+            }
+        }
+    })
+
     // Criar uma tela para desenhar o jogo
     let canvas = createCanvas(750, 430)
     canvas.parent('game')
-
-    iniciarJogo()
 }
 
 function draw() {
@@ -205,6 +219,7 @@ function mouseReleased() {
             }
 
             cartas_descartadas[carta_antiga.cor][carta_antiga.valor-1] = true
+            app.a++
         }
         mesa[pos] = carta_escolhida
         adicionarAoHistorico()
@@ -241,6 +256,7 @@ function carregarDoHistorico(pos) {
 
     cartas_descartadas = dados.cartas_descartadas
     mesa = dados.mesa
+    app.a++
 }
 
 function adicionarAoHistorico() {
@@ -259,4 +275,34 @@ function adicionarAoHistorico() {
     )
 
     historico.pos++
+}
+
+function cartaDisponivel(carta, cor) {
+    return !cartas_descartadas[cor][carta-1]
+}
+
+
+function combinacaoDisponivel(a, b, c, cor=-1) {
+    // Ordenar cartas pelos valores
+    let ord = [a, b, c].sort()
+    a = ord[0]
+    b = ord[1]
+    c = ord[2]
+
+    // Verificar se a combinação são de cartas com o mesmo valor
+    if (a == b && b == c) {
+        return cartaDisponivel(a, 0) && cartaDisponivel(a, 1) && cartaDisponivel(a, 2)
+    }
+
+    // Verificar se é uma sequencia
+    if (a + 1 == b && b + 1 == c) {
+        // Verificar se a sequencia pode ser de qualquer cor
+        if (cor == -1) {
+            return (cartaDisponivel(a, 0) || cartaDisponivel(a, 1) || cartaDisponivel(a, 2)) 
+                && (cartaDisponivel(b, 0) || cartaDisponivel(b, 1) || cartaDisponivel(b, 2))
+                && (cartaDisponivel(c, 0) || cartaDisponivel(c, 1) || cartaDisponivel(c, 2))
+        }
+
+        return cartaDisponivel(a, cor) && cartaDisponivel(b, cor) && cartaDisponivel(c, cor)
+    }
 }
