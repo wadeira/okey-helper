@@ -103,8 +103,9 @@ function mousePressed() {
         let x = floor(mouseX / LARGURA_CARTA)
         let carta = x % 8 + 1
 
-        cartas_descartadas[cor][carta-1] = true;
-        app.a++;
+        cartas_descartadas[cor][carta-1] = true
+        adicionarAoHistorico()
+        app.a++
     }
 }
 
