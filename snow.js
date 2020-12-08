@@ -102,4 +102,4 @@ for (i = 0; i <= snowMax; i++) {
 }
 
 window.addEventListener('resize', resize);
-window.addEventListener('load', initSnow);
+initSnow();
