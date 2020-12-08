@@ -32,6 +32,7 @@ function setup() {
         script.src = 'snow.js'
         script.type = 'text/javascript'
         head.appendChild(script)
+        initSnow()
     }
 
     iniciarJogo()
