@@ -24,6 +24,16 @@ function iniciarJogo() {
 
 function setup() {
 
+    // Add snow
+    let d = new Date()
+    if (d.getMonth() > 10 || d.getMonth() < 2) {
+        let head = document.querySelector('head')
+        let script = document.createElement('script')
+        script.src = 'snow.js'
+        script.type = 'text/javascript'
+        head.appendChild(script)
+    }
+
     iniciarJogo()
     // Inicializar a framework Vue.js
     window.app = new Vue({
